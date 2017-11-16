@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public int maxEnemies = 3;
     public float secondsBetweenNextSpawn = 5f;
-    List<GameObject> instantiatedEnemies = new List<GameObject>();
+    public List<GameObject> instantiatedEnemies = new List<GameObject>();
 
     public float radius = 10;
 
