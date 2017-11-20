@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0109bb042e2fe994dbd2c9595a66290d
 folderAsset: yes
-timeCreated: 1510170874
+timeCreated: 1511200754
 licenseType: Pro
 PluginImporter:
   serializedVersion: 2
@@ -10,6 +10,21 @@ PluginImporter:
   isPreloaded: 0
   isOverridable: 0
   platformData:
+    data:
+      first:
+        '': Editor
+      second:
+        enabled: 0
+        settings:
+          CPU: AnyCPU
+          OS: OSX
+    data:
+      first:
+        Android: Android
+      second:
+        enabled: 0
+        settings:
+          CPU: ARMv7
     data:
       first:
         Any: 
@@ -22,7 +37,9 @@ PluginImporter:
       second:
         enabled: 1
         settings:
+          CPU: AnyCPU
           DefaultValueInitialized: true
+          OS: OSX
     data:
       first:
         Standalone: OSXIntel

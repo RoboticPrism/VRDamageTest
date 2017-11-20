@@ -6,6 +6,7 @@ public class PlayerGun : MonoBehaviour {
 
     public Transform muzzleLocation;
     public GameObject laser;
+    public bool isRight;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,15 @@ public class PlayerGun : MonoBehaviour {
         {
             Shoot();
         }
-	}
+        if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f && !isRight)
+        {
+            Shoot();
+        }
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.5f && isRight)
+        {
+            Shoot();
+        }
+    }
 
     IEnumerator TurnOffLaser()
     {
