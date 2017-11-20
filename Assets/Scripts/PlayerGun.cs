@@ -7,6 +7,7 @@ public class PlayerGun : MonoBehaviour {
     public Transform muzzleLocation;
     public GameObject laser;
     public bool isRight;
+    Coroutine turnOffLaser = null;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +20,11 @@ public class PlayerGun : MonoBehaviour {
         {
             Shoot();
         }
-        if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f && !isRight)
+        if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f && !isRight && turnOffLaser == null)
         {
             Shoot();
         }
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.5f && isRight)
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.5f && isRight && turnOffLaser == null)
         {
             Shoot();
         }
@@ -33,16 +34,17 @@ public class PlayerGun : MonoBehaviour {
     {
         yield return new WaitForSeconds(.2f);
         laser.SetActive(false);
+        yield return new WaitForSeconds(.2f);
+        turnOffLaser = null;
     }
 
     public void Shoot()
     {
         laser.SetActive(true);
         StopCoroutine("TurnOffLaser");
-        StartCoroutine(TurnOffLaser());
+        turnOffLaser = StartCoroutine(TurnOffLaser());
         RaycastHit hit;
         if (Physics.Raycast(muzzleLocation.position, transform.TransformDirection(Vector3.right), out hit, 100)) {
-            Debug.Log(hit.transform.name);
             if (hit.transform.gameObject.GetComponent<Enemy>())
             {
                 hit.transform.gameObject.GetComponent<Enemy>().OnShot();
