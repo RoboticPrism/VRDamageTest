@@ -55,5 +55,6 @@ public class EnemySpawner : MonoBehaviour {
     {
         instantiatedEnemies.RemoveAll(e => e == enemy);
         indicator.RemoveDamagePoint(enemy);
+        Destroy(enemy.gameObject);
     }
 }

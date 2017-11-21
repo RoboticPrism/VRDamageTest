@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TestIndicator : Indicator {
 
-    List<TestIndicatorPoint> indicatorPoints = new List<TestIndicatorPoint>();
+    public List<TestIndicatorPoint> indicatorPoints = new List<TestIndicatorPoint>();
     public TestIndicatorPoint indicatorPointPrefab;
     public Transform headCenter;
 
@@ -32,8 +32,17 @@ public class TestIndicator : Indicator {
     public new void RemoveDamagePoint(Enemy enemy)
     {
         base.RemoveDamagePoint(enemy);
-        List<TestIndicatorPoint> removeList = new List<TestIndicatorPoint>();
-        indicatorPoints.RemoveAll(t => t.enemy == enemy);
+        TestIndicatorPoint removePoint = null;
+        foreach (TestIndicatorPoint t in indicatorPoints)
+        {
+            if (t.enemy == enemy)
+            {
+                removePoint = t;
+                break;
+            }
+        }
+        indicatorPoints.Remove(removePoint);
+        Destroy(removePoint.gameObject);
     }
 
 }

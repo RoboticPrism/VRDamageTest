@@ -21,6 +21,5 @@ public class Enemy : MonoBehaviour {
     {
         spawner.RemoveEnemy(this);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
     }
 }
