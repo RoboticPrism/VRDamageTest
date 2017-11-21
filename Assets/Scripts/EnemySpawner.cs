@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+    public TestIndicator indicator;
+
     public int maxEnemies = 3;
     public float secondsBetweenNextSpawn = 5f;
-    public List<GameObject> instantiatedEnemies = new List<GameObject>();
+    public List<Enemy> instantiatedEnemies = new List<Enemy>();
 
     public float radius = 10;
 
-    public GameObject enemyPrefab;
+    public Enemy enemyPrefab;
 
     Coroutine enemySpawnRoutine;
 
@@ -38,8 +40,20 @@ public class EnemySpawner : MonoBehaviour {
                                             transform.position.y, 
                                             radius * Mathf.Cos(angleRad));
         Quaternion spawnRotation = Quaternion.AngleAxis(angleDeg + 180, Vector3.up);
-        instantiatedEnemies.Add(Instantiate(enemyPrefab, spawnLocation, spawnRotation));
-
+        Enemy newEnemy = Instantiate(enemyPrefab, spawnLocation, spawnRotation);
+        AddEnemy(newEnemy);
         enemySpawnRoutine = null;
+    }
+
+    public void AddEnemy(Enemy enemy)
+    {
+        instantiatedEnemies.Add(enemy);
+        indicator.AddDamagePoint(enemy);
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        instantiatedEnemies.RemoveAll(e => e == enemy);
+        indicator.RemoveDamagePoint(enemy);
     }
 }

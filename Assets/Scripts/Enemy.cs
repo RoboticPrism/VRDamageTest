@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
 
     public void OnShot ()
     {
-        spawner.instantiatedEnemies.Remove(this.gameObject);
+        spawner.RemoveEnemy(this);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
