@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+    public bool start = false;
     public bool useTest = true;
 
     public TestIndicator testIndicator;
     public TraditionalIndicator tradIndicator;
 
-    public int maxEnemies = 3;
+    public int maxEnemies = 1;
     public float secondsBetweenNextSpawn = 5f;
     public List<Enemy> instantiatedEnemies = new List<Enemy>();
 
     public float radius = 10;
 
     public Enemy enemyPrefab;
-
+    int enemiesDestroyed = 0;
     Coroutine enemySpawnRoutine;
 
 	// Use this for initialization
@@ -32,9 +33,12 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (enemySpawnRoutine == null && instantiatedEnemies.Count < maxEnemies)
+        if (start)
         {
-            enemySpawnRoutine = StartCoroutine(SpawnEnemy());
+            if (enemySpawnRoutine == null && instantiatedEnemies.Count < maxEnemies && enemiesDestroyed < 30)
+            {
+                enemySpawnRoutine = StartCoroutine(SpawnEnemy());
+            }
         }
 	}
 
@@ -67,5 +71,16 @@ public class EnemySpawner : MonoBehaviour {
         testIndicator.RemoveDamagePoint(enemy);
         tradIndicator.RemoveDamagePoint(enemy);
         Destroy(enemy.gameObject);
+        enemiesDestroyed += 1;
+        if (enemiesDestroyed > 5)
+        {
+            maxEnemies = 2;
+            secondsBetweenNextSpawn = 3f;
+        }
+        if (enemiesDestroyed > 10)
+        {
+            maxEnemies = 3;
+            secondsBetweenNextSpawn = 2f;
+        }
     }
 }

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour {
 
+    public bool isRight;
     public Transform muzzleLocation;
     public GameObject laser;
-    public bool isRight;
+    AudioSource laserSource;
+
     Coroutine turnOffLaser = null;
 
 	// Use this for initialization
 	void Start () {
-		
+        laserSource = GetComponent<AudioSource>();	
 	}
 	
 	// Update is called once per frame
@@ -43,11 +45,16 @@ public class PlayerGun : MonoBehaviour {
         laser.SetActive(true);
         StopCoroutine("TurnOffLaser");
         turnOffLaser = StartCoroutine(TurnOffLaser());
+        laserSource.Play();
         RaycastHit hit;
         if (Physics.Raycast(muzzleLocation.position, transform.TransformDirection(Vector3.right), out hit, 100)) {
             if (hit.transform.gameObject.GetComponent<Enemy>())
             {
                 hit.transform.gameObject.GetComponent<Enemy>().OnShot();
+            }
+            if (hit.transform.gameObject.GetComponent<StartButton>())
+            {
+                hit.transform.gameObject.GetComponent<StartButton>().OnShot();
             }
         }
     }
