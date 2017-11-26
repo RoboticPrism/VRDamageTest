@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    public TestIndicator indicator;
+    public bool useTest = true;
+
+    public TestIndicator testIndicator;
+    public TraditionalIndicator tradIndicator;
 
     public int maxEnemies = 3;
     public float secondsBetweenNextSpawn = 5f;
@@ -18,7 +21,13 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		if(useTest)
+        {
+            tradIndicator.gameObject.SetActive(false);
+        } else
+        {
+            testIndicator.gameObject.SetActive(false);
+        }
 	}
 	
 	// Update is called once per frame
@@ -48,13 +57,15 @@ public class EnemySpawner : MonoBehaviour {
     public void AddEnemy(Enemy enemy)
     {
         instantiatedEnemies.Add(enemy);
-        indicator.AddDamagePoint(enemy);
+        testIndicator.AddDamagePoint(enemy);
+        tradIndicator.AddDamagePoint(enemy);
     }
 
     public void RemoveEnemy(Enemy enemy)
     {
         instantiatedEnemies.RemoveAll(e => e == enemy);
-        indicator.RemoveDamagePoint(enemy);
+        testIndicator.RemoveDamagePoint(enemy);
+        tradIndicator.RemoveDamagePoint(enemy);
         Destroy(enemy.gameObject);
     }
 }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TraditionalIndicator : MonoBehaviour {
+public class TraditionalIndicator : Indicator {
 
-	// Use this for initialization
-	void Start () {
+    public List<TraditionalIndicatorPoint> indicatorPoints = new List<TraditionalIndicatorPoint>();
+    public TraditionalIndicatorPoint indicatorPointPrefab;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -13,4 +16,28 @@ public class TraditionalIndicator : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public new void AddDamagePoint(Enemy enemy)
+    {
+        base.AddDamagePoint(enemy);
+        TraditionalIndicatorPoint newIndicator = Instantiate(indicatorPointPrefab, transform);
+        newIndicator.enemy = enemy;
+        indicatorPoints.Add(newIndicator);
+    }
+
+    public new void RemoveDamagePoint(Enemy enemy)
+    {
+        base.RemoveDamagePoint(enemy);
+        TraditionalIndicatorPoint removePoint = null;
+        foreach (TraditionalIndicatorPoint t in indicatorPoints)
+        {
+            if (t.enemy == enemy)
+            {
+                removePoint = t;
+                break;
+            }
+        }
+        indicatorPoints.Remove(removePoint);
+        Destroy(removePoint.gameObject);
+    }
 }
