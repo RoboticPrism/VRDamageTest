@@ -36,12 +36,13 @@ public class TestIndicatorPoint : MonoBehaviour {
         }
 
         float difference = enemyDirection - rotationY;
+
         if (difference > 180)
         {
-            difference = 360 - difference;
+            difference = difference - 360;
         } else if (difference < -180)
         {
-            difference = 360 + difference;
+            difference = difference + 360;
         }
 
         float x = 0f;

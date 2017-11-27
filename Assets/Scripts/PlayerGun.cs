@@ -22,11 +22,11 @@ public class PlayerGun : MonoBehaviour {
         {
             Shoot();
         }
-        if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f && !isRight && turnOffLaser == null)
+        if(OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger) >= 0.5f && !isRight && turnOffLaser == null)
         {
             Shoot();
         }
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.5f && isRight && turnOffLaser == null)
+        if (OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) >= 0.5f && isRight && turnOffLaser == null)
         {
             Shoot();
         }
