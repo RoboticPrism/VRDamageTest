@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    public bool start = false;
-    public bool useTest = true;
+    bool start = false;
+    public enum indicatorType { TRADITIONAL, TEST }
+    public indicatorType currentIndicator = indicatorType.TRADITIONAL;
 
     public TestIndicator testIndicator;
     public TraditionalIndicator tradIndicator;
 
-    public int maxEnemies = 1;
-    public float secondsBetweenNextSpawn = 5f;
-    public List<Enemy> instantiatedEnemies = new List<Enemy>();
+    int maxEnemies = 1;
+    float secondsBetweenNextSpawn = 5f;
+    List<Enemy> instantiatedEnemies = new List<Enemy>();
 
     public float radius = 10;
 
@@ -22,7 +23,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(useTest)
+		if(currentIndicator == indicatorType.TEST)
         {
             tradIndicator.gameObject.SetActive(false);
         } else
@@ -56,6 +57,11 @@ public class EnemySpawner : MonoBehaviour {
         Enemy newEnemy = Instantiate(enemyPrefab, spawnLocation, spawnRotation);
         AddEnemy(newEnemy);
         enemySpawnRoutine = null;
+    }
+
+    public void StartGame()
+    {
+        start = true;
     }
 
     public void AddEnemy(Enemy enemy)

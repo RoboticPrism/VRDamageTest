@@ -18,7 +18,7 @@ public class StartButton : MonoBehaviour {
 
     public void OnShot()
     {
-        spawner.start = true;
+        spawner.StartGame();
         gameObject.SetActive(false);
     }
 }
