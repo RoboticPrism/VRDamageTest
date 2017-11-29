@@ -1,61 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Tracker : MonoBehaviour {
-  // String logs = "";
+  string logs;
+  long elapsedTicks;
+  DateTime centuryBegin, sessionStart;
+
+  centuryBegin = new DateTime(2001, 1, 1);
 
 	// Use this for initialization
 	void Start () {
-    // Initialization
+    sessionStart = DateTime.Now;
+    elapsedTicks = sessionStart.Ticks - centuryBegin.Ticks;
 	}
 
 	// Update is called once per frame
 	void Update () {
-    // Per Frame Stuff
+  // TODO
 	}
 
+  // Time of enemy spawn
+  void EnemySpawnTime() {
+    int currentTime, enemyNum, enemySpawnTime, degreeDifference;
+    currentTime = DateTime.Now;
+    enemySpawnTime = currentTime.Ticks - elapsedTicks;
+    // enemyNum = this.enemyNum; TODO
+    // degreeDifference = TODO
 
-  // Time from player getting hit to player having enemy in their field of view.
-  returnType playerHitToEnemyInView() {
-    // int statResult;
-    // int timeOfPlayerHit, timeOfEnemyInView;
-    // if(playerHit) {
-    //   timeOfPlayerHit = System.Time();
-    //   if(enemyInView) {
-    //     timeOfEnemyInView = System.Time();
-    //   }
-    // }
-    // statResult = timeOfEnemyInView - timeOfPlayerHit;
-    // logs += "playerHitToEnemyInView: ";
-    // logs += statResult;
-    // logs += "\0";
+    string result = $"EnemySpawnTime || Enemy#: {enemyNum} | GameSessionTime: {enemySpawnTime} | DegreeDifference: {degreeDifference}\n";
+    logs += result;
   }
 
-  // If player rotates past the enemy (and if they do, how far, and how many times).
-  returnType rotatePastEnemy() {
-    // int statResult;
-    // float howFarPast = (playerInitialCamera-playerEndCamera)-(playerInitialCamera-enemyPosition);
-    // float howManyTimes = ??? # of rotations or the total stat?
-    // logs += "rotatePastEnemy: ";
-    // logs += statResult;
-    // logs += "\0";
+  // Time of enemy entering player's view
+  void EnemyInViewTime() {
+    int currentTime, enemyNum, enemyInViewTime;
+    currentTime = DateTime.Now;
+    enemyInViewTime = currentTime.Ticks - elapsedTicks;
+    // enemyNum = appearedEnemy.enemyNum; TODO
+
+    string result = $"EnemyInViewTime || Enemy#: {enemyNum} | GameSessionTime: {enemyInViewTime}\n";
+    logs += result;
   }
 
-  // Time from having enemy in field of view to the player pulling the trigger.
-  returnType enemyInViewToTriggerPull() {
-    // int statResult;
-    // int timeOfEnemyInView, timeOfTriggerPull;
-    // if(enemyInView) {
-    //   timeOfEnemyInView = System.Time();
-    //   if(triggerPull) {
-    //     timeOfTriggerPull = System.Time();
-    //   }
-    // }
-    // statResult = timeOfTriggerPull - timeOfEnemyInView;
-    // logs += "enemyInViewToTriggerPull: ";
-    // logs += statResult;
-    // logs += "\0";
-  }
+  // Time of enemy being shot
+  void EnemyIsShotTime() {
+    int currentTime, enemyNum, enemyIsShotTime;
+    currentTime = DateTime.Now;
+    enemyIsShotTime = currentTime.Ticks - elapsedTicks;
+    // enemyNum = this.enemyNum; TODO
 
+    string result = $"EnemyIsShotTime || Enemy#: {enemyNum} | GameSessionTime: {enemyIsShotTime}\n";
+    logs += result;
+  }
 }
