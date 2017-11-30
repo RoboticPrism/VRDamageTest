@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
 
     public EnemySpawner spawner;
     public GameObject explosionPrefab;
-   
+
     public AudioSource pewSource;
 
 	// Use this for initialization
@@ -14,15 +14,16 @@ public class Enemy : MonoBehaviour {
         spawner = FindObjectOfType<EnemySpawner>();
         pewSource.PlayDelayed(.5f);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     public void OnShot ()
     {
         spawner.RemoveEnemy(this);
+        tracker.Track('DestroyEnemy');
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 }

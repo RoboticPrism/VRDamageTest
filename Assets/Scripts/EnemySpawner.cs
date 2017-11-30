@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour {
     public TraditionalIndicator tradIndicator;
 
     public int maxEnemies = 1;
+    public int enemiesSpawned = 0;
     public float secondsBetweenNextSpawn = 5f;
     public List<Enemy> instantiatedEnemies = new List<Enemy>();
 
@@ -20,8 +21,11 @@ public class EnemySpawner : MonoBehaviour {
     int enemiesDestroyed = 0;
     Coroutine enemySpawnRoutine;
 
+    public Tracker tracker;
+
 	// Use this for initialization
 	void Start () {
+    tracker = FindObjectOfType<Tracker>();
 		if(useTest)
         {
             tradIndicator.gameObject.SetActive(false);
@@ -30,7 +34,7 @@ public class EnemySpawner : MonoBehaviour {
             testIndicator.gameObject.SetActive(false);
         }
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
         if (start)
@@ -49,12 +53,13 @@ public class EnemySpawner : MonoBehaviour {
         int angleDeg = Random.Range(0, 360);
         float angleRad = Mathf.Deg2Rad * angleDeg;
 
-        Vector3 spawnLocation = new Vector3(radius * Mathf.Sin(angleRad), 
-                                            transform.position.y, 
+        Vector3 spawnLocation = new Vector3(radius * Mathf.Sin(angleRad),
+                                            transform.position.y,
                                             radius * Mathf.Cos(angleRad));
         Quaternion spawnRotation = Quaternion.AngleAxis(angleDeg + 180, Vector3.up);
         Enemy newEnemy = Instantiate(enemyPrefab, spawnLocation, spawnRotation);
         AddEnemy(newEnemy);
+        tracker.Track('SpawnEnemy');
         enemySpawnRoutine = null;
     }
 

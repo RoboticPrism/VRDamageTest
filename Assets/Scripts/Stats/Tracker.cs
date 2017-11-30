@@ -1,32 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using Time;
 
 public class Tracker : MonoBehaviour {
   string logs;
-  long elapsedTicks;
-  DateTime centuryBegin, sessionStart;
-
-  centuryBegin = new DateTime(2001, 1, 1);
+  float sessionTime;
 
 	// Use this for initialization
-	void Start () {
-    sessionStart = DateTime.Now;
-    elapsedTicks = sessionStart.Ticks - centuryBegin.Ticks;
+	void Start() {
+    sessionTime = 0;
 	}
 
 	// Update is called once per frame
-	void Update () {
-  // TODO
+	void Update() {
+    sessionTime += Time.deltaTime;
 	}
 
-  // Time of enemy spawn
+  void Track(string eventName) {
+    int enemyNum;
+    switch (eventName) {
+      case 'SpawnEnemy':
+        int enemyNum = newEnemy.number;
+        logs += $"{eventName} || Enemy#: {enemyNum} | GameSessionTime: {sessionTime} | DegreeDifference: {degreeDifference}\n";
+        break;
+      case 'ViewEnemy':
+        logs += $"{eventName} || Enemy#: {enemyNum} | GameSessionTime: {sessionTime}\n";
+        break;
+      case 'DestroyEnemy':
+        int enemyNum =
+        logs += $"{eventName} || Enemy#: {enemyNum} | GameSessionTime: {sessionTime}\n";
+        break;
+      default:
+        break;
+      }
+  }
+
+  /*
   void EnemySpawnTime() {
     int currentTime, enemyNum, enemySpawnTime, degreeDifference;
-    currentTime = DateTime.Now;
-    enemySpawnTime = currentTime.Ticks - elapsedTicks;
-    // enemyNum = this.enemyNum; TODO
     // degreeDifference = TODO
 
     string result = $"EnemySpawnTime || Enemy#: {enemyNum} | GameSessionTime: {enemySpawnTime} | DegreeDifference: {degreeDifference}\n";
@@ -53,5 +65,5 @@ public class Tracker : MonoBehaviour {
 
     string result = $"EnemyIsShotTime || Enemy#: {enemyNum} | GameSessionTime: {enemyIsShotTime}\n";
     logs += result;
-  }
+  }*/
 }
