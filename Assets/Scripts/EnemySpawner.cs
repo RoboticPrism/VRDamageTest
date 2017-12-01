@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
+    public Transform headTransform;
 
     public bool start = false;
     public bool useTest = true;
@@ -58,8 +59,13 @@ public class EnemySpawner : MonoBehaviour {
                                             radius * Mathf.Cos(angleRad));
         Quaternion spawnRotation = Quaternion.AngleAxis(angleDeg + 180, Vector3.up);
         Enemy newEnemy = Instantiate(enemyPrefab, spawnLocation, spawnRotation);
+        enemiesSpawned++;
+
+        newEnemy.number = enemiesSpawned;
+        newEnemy.tracker = tracker;
+        newEnemy.headTransform = headTransform;
+
         AddEnemy(newEnemy);
-        tracker.Track('SpawnEnemy');
         enemySpawnRoutine = null;
     }
 
