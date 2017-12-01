@@ -20,8 +20,17 @@ public class Enemy : MonoBehaviour {
         seen = false;
         spawner = FindObjectOfType<EnemySpawner>();
         pewSource.PlayDelayed(.5f);
+
+        float enemyDirection = ((Mathf.Atan2(transform.position.x - headTransform.position.x, transform.position.z - headTransform.position.z) / Mathf.PI) * 180f) % 360;
+        float rotationY = headTransform.eulerAngles.y % 360;
+        if (rotationY < 0)
+        {
+            rotationY += 360;
+        }
+        float difference = (enemyDirection - rotationY) % 360;
+        degreeDifference = difference;
+
         tracker.Track("SpawnEnemy", this);
-        tracker.printer();
     }
 
 	// Update is called once per frame
@@ -32,15 +41,12 @@ public class Enemy : MonoBehaviour {
         {
             rotationY += 360;
         }
+        float difference = (enemyDirection - rotationY) % 360;
 
-        float difference = enemyDirection - rotationY;
-        degreeDifference = difference;
-
-        if (Mathf.Abs(difference) < 40 && !seen)
+        if (Mathf.Abs(difference) < 45 && !seen)
         {
             seen = true;
             tracker.Track("ViewEnemy", this);
-            tracker.printer();
         }
     }
 
@@ -49,7 +55,7 @@ public class Enemy : MonoBehaviour {
         // log destroyed
         spawner.RemoveEnemy(this);
         tracker.Track("DestroyEnemy", this);
-        tracker.printer();
+        tracker.Export(this);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 }
