@@ -24,7 +24,7 @@ public class Tracker : MonoBehaviour {
 
   public void Track(string eventName, Enemy enemy) {
     int enemyNum = enemy.number;
-    int degreeDifference = 0;
+    int degreeDifference = enemy.degreeDifference;
     switch (eventName) {
           case "SpawnEnemy":
             logs += eventName + ", " + enemyNum + ", " + sessionTime + ", " + degreeDifference + "\n";

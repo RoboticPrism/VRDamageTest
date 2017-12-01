@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
     public int number;
     public bool seen;
+    public float degreeDifference;
 
     public EnemySpawner spawner;
     public GameObject explosionPrefab;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour {
         }
 
         float difference = enemyDirection - rotationY;
+        degreeDifference = difference;
 
         if (Mathf.Abs(difference) < 40 && !seen)
         {
