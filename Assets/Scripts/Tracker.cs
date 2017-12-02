@@ -13,8 +13,8 @@ public class Tracker : MonoBehaviour {
     // Use this for initialization
     void Start() {
         sessionTime = 0;
-        logs = "Event, Enemy#, SessionTime, DegreeDifference||| \r\n";
-        string filePath = getPath();
+        logs = "Event, Enemy#, SessionTime, DegreeDifference\r\n";
+        filePath = Application.dataPath + "/" + "StatTrackerLogs.csv";
     }
 
 	// Update is called once per frame
@@ -24,7 +24,12 @@ public class Tracker : MonoBehaviour {
 
     public void Export(Enemy enemy)
     {
-        Debug.Log(logs);
+        if (enemy.number == 30)
+        {
+            StreamWriter outStream = System.IO.File.CreateText(filePath);
+            outStream.WriteLine(logs);
+            outStream.Close();
+        }
     }
 
   public void Track(string eventName, Enemy enemy) {
@@ -32,22 +37,17 @@ public class Tracker : MonoBehaviour {
     float degreeDifference = enemy.degreeDifference;
     switch (eventName) {
         case "SpawnEnemy":
-            logs += eventName + ", " + enemyNum + ", " + sessionTime + ", " + degreeDifference + "||| \r\n";
+            logs += eventName + ", " + enemyNum + ", " + sessionTime + ", " + degreeDifference + "\r\n";
             break;
         case "ViewEnemy":
-            logs += eventName + ", " + enemyNum + ", " + sessionTime + "||| \r\n";
+            logs += eventName + ", " + enemyNum + ", " + sessionTime + "\r\n";
             break;
         case "DestroyEnemy":
-            logs += eventName + ", " + enemyNum + ", " + sessionTime + "||| \r\n";
+            logs += eventName + ", " + enemyNum + ", " + sessionTime + "\r\n";
             break;
         default:
-            logs += eventName + ", " + enemyNum + ", " + sessionTime + " \r\n";
+            logs += eventName + ", " + enemyNum + ", " + sessionTime + "\r\n";
             break;
     }
   }
-    
-    private string getPath()
-    {
-        return Application.dataPath + "/CSV/" + "StatTrackerLogs.csv";
-    }
 }

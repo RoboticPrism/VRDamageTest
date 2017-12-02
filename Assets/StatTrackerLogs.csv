@@ -1,0 +1,90 @@
+Event, Enemy#, SessionTime, DegreeDifference
+SpawnEnemy, 1, 4.345468, 53.69001
+ViewEnemy, 1, 4.83954
+DestroyEnemy, 1, 5.711524
+SpawnEnemy, 2, 5.822544, 83.21346
+ViewEnemy, 2, 6.506588
+DestroyEnemy, 2, 7.202613
+SpawnEnemy, 3, 7.323615, -134.8651
+ViewEnemy, 3, 8.065665
+DestroyEnemy, 3, 8.811823
+SpawnEnemy, 4, 8.924726, 124.3566
+ViewEnemy, 4, 9.332742
+DestroyEnemy, 4, 10.84181
+SpawnEnemy, 5, 10.96981, 45.39152
+ViewEnemy, 5, 11.76287
+DestroyEnemy, 5, 12.54289
+SpawnEnemy, 6, 12.6669, -40.35854
+ViewEnemy, 6, 12.6729
+DestroyEnemy, 6, 13.64397
+SpawnEnemy, 7, 16.66614, -5.262482
+ViewEnemy, 7, 16.67212
+DestroyEnemy, 7, 19.20822
+SpawnEnemy, 8, 19.68324, -124.6968
+SpawnEnemy, 9, 22.70539, -7.26123
+ViewEnemy, 9, 22.71139
+DestroyEnemy, 8, 24.00246
+SpawnEnemy, 10, 27.02563, -42.99796
+ViewEnemy, 10, 27.02964
+DestroyEnemy, 9, 27.58364
+DestroyEnemy, 10, 29.11274
+SpawnEnemy, 11, 30.60981, -29.31986
+ViewEnemy, 11, 30.61591
+DestroyEnemy, 11, 31.60087
+SpawnEnemy, 12, 33.62298, -143.7972
+ViewEnemy, 12, 34.16603
+DestroyEnemy, 12, 34.676
+SpawnEnemy, 13, 35.64609, 2.307035
+ViewEnemy, 13, 35.65207
+DestroyEnemy, 13, 36.51117
+SpawnEnemy, 14, 37.66819, -124.6128
+ViewEnemy, 14, 38.23326
+DestroyEnemy, 14, 38.91126
+SpawnEnemy, 15, 39.68534, -165.5832
+ViewEnemy, 15, 41.32045
+SpawnEnemy, 16, 41.70459, -168.2997
+SpawnEnemy, 17, 43.72455, -55.92212
+DestroyEnemy, 15, 43.90557
+DestroyEnemy, 16, 45.35368
+SpawnEnemy, 18, 45.92569, -115.9022
+ViewEnemy, 17, 45.99268
+DestroyEnemy, 17, 46.9517
+SpawnEnemy, 19, 47.94378, -74.18884
+ViewEnemy, 18, 47.97274
+ViewEnemy, 19, 48.40679
+SpawnEnemy, 20, 49.9638, -47.72333
+DestroyEnemy, 18, 50.61885
+ViewEnemy, 20, 51.66298
+SpawnEnemy, 21, 52.62799, -81.22027
+DestroyEnemy, 20, 52.85498
+ViewEnemy, 21, 53.59106
+DestroyEnemy, 21, 54.86409
+SpawnEnemy, 22, 54.87011, -64.23489
+DestroyEnemy, 19, 55.50112
+SpawnEnemy, 23, 56.88124, -79.27308
+DestroyEnemy, 22, 58.37834
+SpawnEnemy, 24, 58.9014, -50.67914
+ViewEnemy, 23, 59.05737
+DestroyEnemy, 23, 59.93848
+ViewEnemy, 24, 60.60146
+SpawnEnemy, 25, 60.92345, -28.04848
+ViewEnemy, 25, 60.92959
+DestroyEnemy, 24, 62.38755
+SpawnEnemy, 26, 62.94153, -49.27593
+DestroyEnemy, 25, 63.98467
+ViewEnemy, 26, 64.85966
+SpawnEnemy, 27, 64.96664, -78.36983
+DestroyEnemy, 26, 65.7277
+ViewEnemy, 27, 66.21774
+SpawnEnemy, 28, 66.98274, -160.9806
+DestroyEnemy, 27, 67.08992
+DestroyEnemy, 28, 67.69978
+SpawnEnemy, 29, 69.00288, -151.6055
+ViewEnemy, 29, 69.4089
+SpawnEnemy, 30, 71.02704, -28.4122
+ViewEnemy, 30, 71.03151
+DestroyEnemy, 29, 72.34898
+SpawnEnemy, 31, 73.04403, -119.5909
+ViewEnemy, 31, 73.26102
+DestroyEnemy, 30, 74.04303
+

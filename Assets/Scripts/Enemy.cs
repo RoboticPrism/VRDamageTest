@@ -20,28 +20,14 @@ public class Enemy : MonoBehaviour {
         seen = false;
         spawner = FindObjectOfType<EnemySpawner>();
         pewSource.PlayDelayed(.5f);
-
-        float enemyDirection = ((Mathf.Atan2(transform.position.x - headTransform.position.x, transform.position.z - headTransform.position.z) / Mathf.PI) * 180f) % 360;
-        float rotationY = headTransform.eulerAngles.y % 360;
-        if (rotationY < 0)
-        {
-            rotationY += 360;
-        }
-        float difference = (enemyDirection - rotationY) % 360;
-        degreeDifference = difference;
+        degreeDifference = DegreeDifference();
 
         tracker.Track("SpawnEnemy", this);
     }
 
 	// Update is called once per frame
 	void Update () {
-        float enemyDirection = ((Mathf.Atan2(transform.position.x - headTransform.position.x, transform.position.z - headTransform.position.z) / Mathf.PI) * 180f) % 360;
-        float rotationY = headTransform.eulerAngles.y % 360;
-        if (rotationY < 0)
-        {
-            rotationY += 360;
-        }
-        float difference = (enemyDirection - rotationY) % 360;
+        float difference = DegreeDifference();
 
         if (Mathf.Abs(difference) < 45 && !seen)
         {
@@ -57,5 +43,16 @@ public class Enemy : MonoBehaviour {
         tracker.Track("DestroyEnemy", this);
         tracker.Export(this);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+    }
+
+    public float DegreeDifference() 
+    {
+        float enemyDirection = ((Mathf.Atan2(transform.position.x - headTransform.position.x, transform.position.z - headTransform.position.z) / Mathf.PI) * 180f) % 360;
+        float rotationY = headTransform.eulerAngles.y % 360;
+        if (rotationY < 0)
+        {
+            rotationY += 360;
+        }
+        return (enemyDirection - rotationY) % 180;
     }
 }
